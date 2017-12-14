@@ -37,13 +37,14 @@ public class Matrix2D {
 	
 	public int fallingX;
 	public int fallingY;
-	public boolean notDetectRight = false;
+	
 	public boolean isActive = false;
 	public boolean isFalling = false;
 	public boolean isClickOutSide;
 	public int check = 0;
 	public int [] image= new int[6];
 	public int [][] b;
+	public boolean notDetectRight = false;
 	public boolean notDetectLeft = false;
 	public boolean notDetectUp = false;
 	public boolean notDetectDown = false 

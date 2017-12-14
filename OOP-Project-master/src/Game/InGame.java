@@ -52,64 +52,46 @@ public class InGame extends BasicGameState{
 	public static Matrix2D matrix2d;
 	// de class draw candy
 	DrawCandy  drawCandy;
-	
 	String mouse = "No Input!";
-	String scoreString = "No";
-	
+	String scoreString = "No";	
 	// colum & row
 	int lengthColum = 9;
-	int lengthRow = 9;
-	
+	int lengthRow = 9;	
 	// is click left mouse
-	public static boolean isClickLeftMouse;
-	
+	public static boolean isClickLeftMouse;	
 	// position of mouse
 	public static float posX;
-	public static float posY;
-	
+	public static float posY;	
 	// set active candy
 	public static int activeX;
-	public static int activeY;
-	
-	
+	public static int activeY;	
 	// random text score
-	Random random = new Random();
-	
+	Random random = new Random();	
 	// list obj text score and time
 	public static ArrayList<TextEffect> textEffectsArr;
-
-	
 	// candy temp
-	public static int saveType;
-	
+	public static int saveType;	
 	// boolean variable
 	public static boolean isMatching = false;
-	public static boolean gameOver = false;
-	
+	public static boolean gameOver = false;	
 	// state game
-	public int stateInGame = 0;
-	
+	public int stateInGame = 0;	
 	// time
 	public static int countTime = 0;
 	public static int minute = 60;
-
 	// score game
-	public static int Score = 0;
-	
-	
+	public static int Score = 0;	
 	// font define	
 	public MyFont fontScore;
 	public MyFont scoreApear;
-	private String time;
-	
+	private String time;	
 	// sound
 	MySound soundClickButton;
 	MySound soundSwap;
 	MySound match3Sound;
 	MySound match4Sound;
 	MySound match5Sound;
-	MySound collectScoreSound;
-	
+	MySound collectScoreSound;	
 	public boolean checkbug = false;
 	
 	
@@ -158,72 +140,47 @@ public class InGame extends BasicGameState{
 		
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		// delta = 1000ms
-		
-		countTime += delta;
-		
+		// delta = 1000ms		
+		countTime += delta;	
 		// tao hieu ung dem nguoc
 		time = "Time:  " + (minute - (countTime / 1000));
-		
 		// update score
 		scoreString = "Score: " + Score; 
-		
-		
 		if(gc.getInput().isKeyDown(Input.KEY_BACK)) {
-			sbg.enterState(0, new FadeOutTransition(), new FadeInTransition());
-		}
-		
+			sbg.enterState(0, new FadeOutTransition(), new FadeInTransition());}
 		// update postion of mouse 
 		posX = gc.getInput().getMouseX();
 		posY = gc.getInput().getMouseY();
-		mouse = "X:" + posX + "Y:" + posY; 
-		
+		mouse = "X:" + posX + "Y:" + posY; 	
 		// set true when mouse clicking
-		isClickLeftMouse = gc.getInput().isMousePressed(0);
-		
+		isClickLeftMouse = gc.getInput().isMousePressed(0);		
 		// delete text 
 		deleteText(); 
 		// detect when mouse hit text score
-		collectScore();
-		
+		collectScore();		
 		// xu li roi candy
-		testFalling();
-		
-		drawSwapRight();
-		
-		
+		testFalling();		
+		drawSwapRight();		
 		// logic game
 		if(stateInGame == 0) {
 			detectClickCandy(gc, sbg);
-			detectMove();
-			
-		}
-		
+			detectMove();			
+		}		
 		if(stateInGame == 1) {
-			detectMatch();
-			
-			
+			detectMatch();			
 		}
 		if(stateInGame == 2) {
-			Falling();
-			
+			Falling();			
 		}
 		if(stateInGame == 3) {
 			checkIsNotDetect();
-		}
-		
-		
+		}		
 		// check game over
 		if(minute - (countTime / 1000) == 0) {
-			gameOver = true;
-			
+			gameOver = true;			
 			sbg.enterState(3, new FadeOutTransition(), new FadeInTransition());
-		}
-		
-				
-		
-		resetWhenGameOver();
-			
+		}		
+		resetWhenGameOver();			
 	}
 	
 	
@@ -379,19 +336,7 @@ public void checkIsNotDetect() {
 				}
 			}
 			
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-
-	
+	}	
 	public void detectMoveRight() {
 		// check candy is active?
 		if(matrix2d.isActive) {
